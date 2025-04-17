@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <h1>Rock Paper Scissors</h1>
+    <hr>
+    <button onclick="play('Rock')">Rock</button>
+    <button onclick="play('Paper')">Paper</button>
+    <button onclick="play('Scissors')">Scissors</button>
+    <P class="js-moves"></P>
+    <p class="js-result"></p>
+    <p class="js-score"></p>
+    <button onclick="
+        score.wins=0;
+        score.loses=0;
+        score.ties=0; 
+        localStorage.removeItem('score');
+        displayScore();
+    ">Reset Score</button>
+    <script>
+        const score=JSON.parse(localStorage.getItem('score')) || {
+            wins:0,
+            loses:0,
+            ties:0
+        };
+
+        displayScore();
+        /*
+        if(!score){
+            score={
+                wins:0,
+                loses:0,
+                ties:0
+            };
+        }
+        */
+        function play(yourMove){
+            let randNum=Math.random();
+            // console.log(Math.random()); // any number between 0 and 1 
+            let computerMove='';
+            let result='';
+            if(randNum>=0 && randNum<1/3){
+                computerMove=`Rock`;
+            }else if(randNum>=1/3 && randNum<2/3){
+                computerMove=`Paper`;
+            }else if(randNum>=2/3 && randNum<=1){
+                computerMove=`Scissors`;
+            }
+            if(computerMove===yourMove){
+                result='tied.';
+            }else if(
+                (yourMove==='Rock' && computerMove==='Scissors') ||
+                (yourMove==='Paper' && computerMove==='Rock') ||
+                (yourMove==='Scissors' && computerMove==='Paper')
+            ){
+                result='won.';
+            }else{
+                result='lose.';
+            }
+            // updating score  
+            if(result==="won."){
+                score.wins++;
+            }else if(result==="tied."){
+                score.ties++;
+            }else if(result==="lose."){
+                score.loses++;
+            }
+            // storing in local storage!
+            localStorage.setItem('score',JSON.stringify(score));
+
+            displayScore();
+            // updating moves
+            document.querySelector('.js-moves')
+            .innerHTML=`You picked ${yourMove}, Computer picked ${computerMove}`;
+            // updating result
+            document.querySelector('.js-result')
+            .innerHTML= `you ${result}`;
+        }
+
+        function displayScore(){
+            document.querySelector('.js-score')
+            .innerHTML=`Wins: ${score.wins}, Loses: ${score.loses}, Ties: ${score.ties}`;
+        }
+
+        </script>
+  </body>
+</html>
+

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Objects</title>
+</head>
+<body>
+    <script>
+        const pushkar={
+            name:"Pushkar",
+            height_m:1.7,
+            weight_kg:60,
+            hair:"short",
+            lonely:true,
+            
+            // Nested objects
+            family:{
+                father: "Kanchan Shinde",
+                mother: "Alka Shnide",
+                brother: "Anuj Shinde"
+            },
+
+            time: new Date(), //Object Property (Date)
+
+            // The Property Value can be of the primitive data type 
+            // or an object or even a function.
+            fun: function fun(){
+                console.log("I am a function, duh!")
+            }
+        };
+        console.log(pushkar);
+        console.log("Hey "+pushkar.name);
+        console.log("Your height is: "+pushkar.height_m);
+        let luck=(pushkar.lonely)?"Unlucky!":"Lucky!";
+        console.log("You are: "+luck);
+
+        pushkar.strong=true; // new property added
+        console.log(pushkar);
+        delete pushkar.lonely; // deleted this property!
+        console.log(pushkar);
+        
+        console.log("My Father's name is: "+pushkar.family.father)
+        console.log(pushkar.time.toLocaleTimeString());
+        // Built in Objects
+        console.log(typeof console); // object
+        console.log(typeof console.log); // function
+        console.log(typeof console.log()); // undefined, kyuki andar kuch likha hi nahi hai!
+        console.log(typeof Math.random); // function
+        console.log(typeof Math.random()); // number
+
+        // JS object to JSON object
+        let jsonString= JSON.stringify(pushkar);
+        console.log(jsonString);
+        
+        // JSON to JS object
+        let jsObject=JSON.parse(jsonString);
+        console.log(jsonString);
+
+        // AUTOBOXING
+        console.log("Pushkar Shinde".length);
+        console.log("Pushkar Shinde".toUpperCase());
+
+        // Objects are references, not values.
+        const obj1={
+            message:"Pushkar is awesome"
+        };
+        const obj2=obj1; // now two references points to the same object
+        
+        obj1.message="Anuj is awesome";
+        console.log(obj1); // 'obj1' is just a refernce and not the value, hence refernce will not change as it is const, but value inside it, will.
+        const obj3={
+            message:"Anuj is awesome"
+        };
+        console.log(obj3===obj1); // false, because duh, reffernces are compared not objects
+        console.log(obj2===obj1); // true, because duh, they are referncing the same thing
+        
+        // Destructuring objects
+        const anuj={
+            message:"Anuj is awesome",
+            bro: true
+        };
+        const {message, bro }=anuj;
+        console.log(message);
+        console.log(bro);
+        
+        // Destructuring arrays
+        const num=[1,2,3,45,6,7];
+        const [one, two, three, four, five, six]=num;
+        console.log(one);
+        console.log(three);
+        </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1>DOM Project</h1>
+    <h2>Youtube Subscribe Button</h2>
+    <button onclick="
+        subscribe();
+    " class="js-subscribe">Subscribe</button>
+    <br>
+    <h2>Amazon Shipping Calculator</h2>
+    <p>Order under $40 = +$10 for shipping.</p>
+    <p>Order over $40 = FREE shipping.</p>
+    <input type="number" required size="5">
+    <button onclick="
+        calculate();
+    ">Calculate</button>
+    <script>
+        function subscribe(){
+            let subStatus=document.querySelector('.js-subscribe');
+            if(subStatus.innerText==='Subscribe'){
+                subStatus.innerHTML='Subscribed';
+            }else{
+                subStatus.innerHTML='Subscribe';
+            }
+        }
+        function calculate(a){
+            let child=document.body.appendChild(p);
+            child.innerHTML=`The total amount will be $${a+10}.`
+        }
+    </script>
+</body>
+</html>
