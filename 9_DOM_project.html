@@ -2,23 +2,37 @@
 <html>
 <head>
     <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="wallpapersden.com_invincible-season-2-poster_1920x1080.jpg">
 </head>
 <body>
-    <h1>DOM Project</h1>
+    <h1>A small DOM Project (●'◡'●)</h1>
+    <hr>
     <h2>Youtube Subscribe Button</h2>
     <button onclick="
         subscribe();
     " class="js-subscribe">Subscribe</button>
     <br>
+    <h2>Rock Paper Scissors game!!</h2>
+    <a href="./9_rock_paper_scissors.html" target="_blank">Click to play</a>
+    <br>
     <h2>Amazon Shipping Calculator</h2>
-    <p>Order under $40 = +$10 for shipping.</p>
-    <p>Order over $40 = FREE shipping.</p>
-    <input type="number" required size="5">
+    <p>+$10 for shipping, if the order is under $50.</p>
+    <p>FREE shipping, if the order is and over $50.</p>
+    <input type="number" placeholder="Cost of order"
+    onkeydown=" 
+        handleKeyDownEnter(event);
+    " class="js-orderCost">
     <button onclick="
-        calculate();
+        calculateTotal();
     ">Calculate</button>
+    <p class="js-calculated"></p>
     <script>
-        function subscribe(){
+        function handleKeyDownEnter(event){
+            if(event.key==='Enter'){
+                calculateTotal();
+            }
+        }
+        function subscribe(){  // toggeling button, hehe wow!!
             let subStatus=document.querySelector('.js-subscribe');
             if(subStatus.innerText==='Subscribe'){
                 subStatus.innerHTML='Subscribed';
@@ -26,9 +40,24 @@
                 subStatus.innerHTML='Subscribe';
             }
         }
-        function calculate(a){
-            let child=document.body.appendChild(p);
-            child.innerHTML=`The total amount will be $${a+10}.`
+        function calculateTotal(a){
+            let cost=document.querySelector('.js-orderCost');
+            let costVal=parseFloat(cost.value); // used parseFloat to convert the type of our input as float, earlie it was string
+            console.log(costVal);
+            console.log(typeof costVal);
+
+            if (isNaN(costVal) || costVal < 0) {
+                document.querySelector('.js-calculated')
+                    .innerHTML = "Please enter a valid order amount.";
+                return;
+            }
+
+            if(costVal<50){
+                costVal+=10;
+            }
+
+            document.querySelector('.js-calculated')
+            .innerHTML=`The total cost of your order is: $${costVal}.`;
         }
     </script>
 </body>

@@ -8,10 +8,13 @@
     <!--Document is the child of the window object-->
     <button class="button1">Hi</button>
     <button class="button2">Hello</button>
+    <button class="button3" onclick="
+        document.title='Changed';
+    ">Change Title</button>
     <script>
-        console.log(document.title);
-        document.title="Changed";
-        console.log(document.body);
+        console.log(typeof document.title); //string
+        console.log(document.title); // DOM
+        console.log(document.body); // full body
         console.log(typeof document); // object
         console.log(typeof document.body); //Object
         console.log(typeof document.body.innerHTML); //String
@@ -21,6 +24,7 @@
         console.log(document.querySelector('button')); // <button>Hi</button>
         console.log(document.querySelector('button').innerHTML); // Hi
         document.querySelector('button').innerHTML='Changed'; // dyum!
+        console.log(document.querySelector('button').innerHTML); // Changed
         console.log(document.querySelector('.button2')); // dyum!
     </script>
 </body>
